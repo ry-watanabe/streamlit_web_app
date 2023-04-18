@@ -19,10 +19,8 @@ if audio_file is None:
 if audio_file is not None:
     current_time_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     # Convert the audio file to the required format
-    original_file = pathlib.Path(audio_file.name)
-    audio_file_path = pathlib.Path("./audio").with_suffix(original_file.suffix)
-    audio_segment = AudioSegment.from_file(str(audio_file_path))
-    converted_file = audio_segment.export(pathlib.Path("./converted"+'_'+current_time_str).with_suffix(".wav"), format='wav')
+    audio_segment = AudioSegment.from_file(audio_file)
+    converted_file = audio_segment.export('converted_'+current_time_str+'.wav', format='wav')
 
     # Write the transcription prompt
     system_template = """
